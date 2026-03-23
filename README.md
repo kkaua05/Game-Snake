@@ -81,7 +81,7 @@ Um jogo clássico da cobrinha feito com **HTML, CSS e JavaScript**. Simples, rá
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Seu Nome**
+Desenvolvido por **Kauã Ferreira**
 
 - GitHub: [github.com/seu-usuario](https://github.com/kkaua05)
 - LinkedIn: [linkedin.com/in/seu-perfil](https://www.linkedin.com/in/kauã-ferreira)
