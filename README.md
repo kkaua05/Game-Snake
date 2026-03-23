@@ -70,7 +70,7 @@ Um jogo clássico da cobrinha feito com **HTML, CSS e JavaScript**. Simples, rá
 
 ## 📁 Estrutura dos Arquivos
 
-/jogo-cobrinha
+/Game-Snake
 ├── index.html (Estrutura)
 ├── style.css (Visual)
 ├── script.js (Lógica)
