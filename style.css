@@ -1,0 +1,130 @@
+/* --- Variáveis de Cores (Tema) --- */
+:root {
+    --bg-color: #0f172a;
+    --game-bg: #1e293b;
+    --snake-color: #4ade80;
+    --snake-head: #22c55e;
+    --food-color: #f87171;
+    --text-color: #f1f5f9;
+    --accent: #38bdf8;
+}
+
+/* --- Reset Básico --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Corpo da Página --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+
+/* --- Placar --- */
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.score-box {
+    background: var(--game-bg);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* --- Canvas do Jogo --- */
+canvas {
+    background-color: var(--game-bg);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border: 2px solid #334155;
+    display: block;
+}
+
+/* --- Overlays (Menu e Game Over) --- */
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(15, 23, 42, 0.95);
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
+    display: none; /* Escondido por padrão */
+    backdrop-filter: blur(5px);
+    /* Ajuste para garantir que fique centralizado sobre o canvas */
+    width: 90%; 
+    max-width: 400px;
+}
+
+.overlay h1 {
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.overlay p {
+    margin-bottom: 20px;
+    color: #94a3b8;
+}
+
+/* --- Botões --- */
+button {
+    background: var(--accent);
+    color: var(--bg-color);
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background: #0ea5e9;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+/* --- Dicas de Controle --- */
+.controls-hint {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.key {
+    display: inline-block;
+    background: #334155;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin: 0 2px;
+}

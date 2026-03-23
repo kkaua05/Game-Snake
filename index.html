@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Snake</title>
+    <!-- Link para o arquivo de estilo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Placar -->
+        <div class="scoreboard">
+            <div class="score-box">Pontos: <span id="score">0</span></div>
+            <div class="score-box">Recorde: <span id="highScore">0</span></div>
+        </div>
+
+        <!-- Área do Jogo (Canvas) -->
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+        <!-- Overlay de Menu Inicial -->
+        <div id="menuOverlay" class="overlay" style="display: block;">
+            <h1>Game Snake</h1>
+            <p>Use as setas para controlar</p>
+            <button onclick="startGame()">Iniciar Jogo</button>
+        </div>
+
+        <!-- Overlay de Game Over -->
+        <div id="gameOverOverlay" class="overlay">
+            <h1 style="color: var(--food-color)">Game Over</h1>
+            <p>Sua pontuação final: <span id="finalScore">0</span></p>
+            <button onclick="startGame()">Jogar Novamente</button>
+        </div>
+
+        <div class="controls-hint">
+            Controles: <span class="key">↑</span> <span class="key">↓</span> <span class="key">←</span> <span class="key">→</span> 
+            ou <span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span>
+        </div>
+    </div>
+
+    <!-- Link para o arquivo de lógica (carregado no final para garantir que o HTML existe) -->
+    <script src="script.js"></script>
+</body>
+</html>
