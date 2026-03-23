@@ -1,34 +1,95 @@
-📖 Visão Geral
+# 🐍 Jogo da Cobrinha (Snake Game)
 
-O Game Snake é uma reinterpretação moderna do clássico jogo Snake, desenvolvida com foco em performance, clean code e fundamentos sólidos de Desenvolvimento Web. Diferente de muitas implementações que dependem de bibliotecas externas, este projeto foi construído inteiramente com JavaScript Vanilla, demonstrando domínio nativo da linguagem e das APIs do navegador.
-O objetivo principal foi criar uma experiência de jogo fluida e visualmente atraente, enquanto se aplicavam boas práticas de engenharia de software, como separação de responsabilidades (MVC simplificado) e persistência de dados no lado do cliente.
+Um jogo clássico da cobrinha feito com **HTML, CSS e JavaScript**. Simples, rápido e sem necessidade de instalar nada.
 
-⚙️ Como Funciona (Lógica Interna)
+---
 
-O jogo opera baseando-se em um Game Loop controlado, que gerencia o estado da aplicação em tempo real. O funcionamento pode ser dividido em quatro pilares:
-Renderização (Canvas API):
+## 🎮 Como Funciona o Jogo
 
-O jogo utiliza o elemento <canvas> do HTML5 como uma grade bidimensional.
+1. A cobra se move automaticamente em uma direção
+2. Você controla a direção com as setas do teclado
+3. Ao comer a comida vermelha, a cobra cresce e ganha pontos
+4. O jogo termina se bater na parede ou no próprio corpo
+5. Seu recorde fica salvo no navegador
 
-A função draw() limpa a tela e redesenha todos os elementos (cobra, comida, pontuação) a cada frame, criando a ilusão de movimento.
-O sistema de coordenadas é baseado em uma grade (grid), onde cada célula possui 20x20 pixels.
-Game Loop (Intervalo de Tempo):
+---
 
-Utilizamos setInterval para executar a função update() a cada 100 milissegundos.
+## 💻 Como Funciona o Código
 
-Isso controla a velocidade do jogo (FPS) e garante que a lógica não dependa da taxa de atualização do monitor do usuário.
-Gerenciamento de Estado:
+### 1. HTML (`index.html`)
+- Cria a estrutura da página
+- Define o `<canvas>` onde o jogo é desenhado
+- Cria os botões e placares
 
-A cobra é um array de objetos, onde cada objeto representa um segmento do corpo {x, y}.
+### 2. CSS (`style.css`)
+- Define as cores e o visual do jogo
+- Centraliza os elementos na tela
+- Cria o estilo dos menus e botões
 
-O movimento é simulado adicionando uma nova cabeça na direção atual (unshift) e removendo a cauda (pop), a menos que a cobra tenha comido.
-Variáveis globais controlam o score, status do jogo e direção atual (dx, dy).
+### 3. JavaScript (`script.js`)
+- **`startGame()`** - Inicia o jogo e reseta as variáveis
+- **`update()`** - Atualiza a posição da cobra a cada frame
+- **`draw()`** - Desenha a cobra e a comida na tela
+- **`checkCollision()`** - Verifica se a cobra bateu em algo
+- **`createFood()`** - Cria comida em posição aleatória
+- **`gameOver()`** - Finaliza o jogo e mostra a pontuação
+- **`changeDirection()`** - Captura as teclas pressionadas
 
-Detecção de Colisão:
+---
 
-A cada frame, o jogo verifica se as coordenadas da cabeça da cobra coincidem com:
-Paredes: Coordenadas menores que 0 ou maiores que o limite do canvas.
-Próprio Corpo: Iteração sobre o array da cobra para verificar sobreposição.
-Comida: Gera nova posição aleatória e incrementa o score.
-Persistência de Dados:
-O High Score é salvo no LocalStorage do navegador. Isso permite que o recorde do usuário seja mantido mesmo após fechar a aba ou reiniciar o computador.
+## 🛠️ Linguagens Utilizadas
+
+| Linguagem | Para que serve |
+|-----------|----------------|
+| **HTML5** | Estrutura da página e área do jogo (Canvas) |
+| **CSS3** | Visual, cores e estilo dos elementos |
+| **JavaScript** | Lógica do jogo, movimentos e regras |
+
+---
+
+## ▶️ Como Rodar
+
+1. Baixe ou clone os arquivos
+2. Abra o arquivo `index.html` no seu navegador
+3. Pronto! Pode jogar
+
+**Não precisa instalar nada.** Funciona direto no navegador.
+
+---
+
+## 🎯 Controles
+
+| Tecla | Ação |
+|-------|------|
+| ⬆️ ou W | Mover para cima |
+| ⬇️ ou S | Mover para baixo |
+| ⬅️ ou A | Mover para esquerda |
+| ➡️ ou D | Mover para direita |
+
+---
+
+## 📁 Estrutura dos Arquivos
+
+/jogo-cobrinha
+├── index.html (Estrutura)
+├── style.css (Visual)
+├── script.js (Lógica)
+└── README.md (Este arquivo)
+
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por **Seu Nome**
+
+- GitHub: [github.com/seu-usuario](https://github.com/kkaua05)
+- LinkedIn: [linkedin.com/in/seu-perfil](https://www.linkedin.com/in/kauã-ferreira)
+
+---
+
+<div align="center">
+
+Feito com ❤️ e JavaScript
+
+</div>
