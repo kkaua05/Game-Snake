@@ -18,6 +18,7 @@ let score = 0;
 let highScore = localStorage.getItem('snakeHighScore') || 0;
 let gameLoop;
 let isGameRunning = false;
+let isPaused = false;
 
 // Cobra e Comida
 let snake = [];
@@ -36,15 +37,22 @@ function startGame() {
     score = 0;
     dx = 0;
     dy = 0;
+    isPaused = false;
     scoreEl.innerText = score;
     isGameRunning = true;
     
     // Esconder menus
     menuOverlay.style.display = 'none';
     gameOverOverlay.style.display = 'none';
+    document.getElementById('pauseOverlay').style.display = 'none';
 
     // Criar primeira comida
     createFood();
+
+    // Mostrar botão de pausa
+    pauseBtn.style.display = 'inline-block';  // ← ADICIONAR
+    pauseBtn.innerHTML = '⏸️ Pausar';
+    pauseBtn.classList.remove('active');
 
     // Iniciar o loop
     if (gameLoop) clearInterval(gameLoop);
@@ -52,7 +60,7 @@ function startGame() {
 }
 
 function update() {
-    if (!isGameRunning) return;
+    if (!isGameRunning || isPaused) return;
 
     // Mover a cobra
     const head = { x: snake[0].x + dx, y: snake[0].y + dy };
@@ -163,7 +171,38 @@ function gameOver() {
 
     finalScoreEl.innerText = score;
     gameOverOverlay.style.display = 'block';
+    pauseBtn.style.display = 'none';
 }
+
+// ← ADICIONAR ESTA FUNÇÃO NOVA
+function togglePause() {
+    if (!isGameRunning) return;
+    
+    isPaused = !isPaused;
+    const pauseOverlay = document.getElementById('pauseOverlay');
+    
+    if (isPaused) {
+        // Pausar o jogo
+        clearInterval(gameLoop);
+        pauseBtn.innerHTML = '▶️ Continuar';
+        pauseBtn.classList.add('active');
+        pauseOverlay.style.display = 'block';
+    } else {
+        // Continuar o jogo
+        gameLoop = setInterval(update, GAME_SPEED);
+        pauseBtn.innerHTML = '⏸️ Pausar';
+        pauseBtn.classList.remove('active');
+        pauseOverlay.style.display = 'none';
+    }
+}
+
+// ← ADICIONAR ESTE EVENTO PARA PAUSAR COM TECLA
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space' || event.code === 'Escape') {
+        event.preventDefault();
+        togglePause();
+    }
+});
 
 /* --- Controles --- */
 
