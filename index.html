@@ -16,6 +16,10 @@
             <div class="score-box">Recorde: <span id="highScore">0</span></div>
         </div>
 
+        <!-- BOTÃO DE PAUSA (ADICIONAR AQUI) -->
+        <button id="pauseBtn" class="pause-button" onclick="togglePause()">⏸️ Pausar</button>
+
+
         <!-- Área do Jogo (Canvas) -->
         <canvas id="gameCanvas" width="400" height="400"></canvas>
 
@@ -31,6 +35,13 @@
             <h1 style="color: var(--food-color)">Game Over</h1>
             <p>Sua pontuação final: <span id="finalScore">0</span></p>
             <button onclick="startGame()">Jogar Novamente</button>
+        </div>
+
+        <!-- OVERLAY DE PAUSA (ADICIONAR AQUI) -->
+        <div id="pauseOverlay" class="pause-overlay">
+        <h2>⏸️ Pausado</h2>
+        <p>Pressione ESPAÇO ou clique em Continuar</p>
+        <button onclick="togglePause()">▶️ Continuar</button>
         </div>
 
         <div class="controls-hint">
