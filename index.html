@@ -2,55 +2,78 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Snake</title>
-    <!-- Link para o arquivo de estilo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Game Snake 🐍</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <!-- Botão de Som -->
+    <button class="sound-toggle" id="soundToggle">🔊</button>
+    
     <div class="container">
         <!-- Placar -->
         <div class="scoreboard">
             <div class="score-box">Pontos: <span id="score">0</span></div>
             <div class="score-box">Recorde: <span id="highScore">0</span></div>
         </div>
-
-        <!-- BOTÃO DE PAUSA (ADICIONAR AQUI) -->
-        <button id="pauseBtn" class="pause-button" onclick="togglePause()">⏸️ Pausar</button>
-
-
-        <!-- Área do Jogo (Canvas) -->
+        
+        <!-- Canvas do Jogo -->
         <canvas id="gameCanvas" width="400" height="400"></canvas>
-
-        <!-- Overlay de Menu Inicial -->
-        <div id="menuOverlay" class="overlay" style="display: block;">
-            <h1>Game Snake</h1>
-            <p>Use as setas para controlar</p>
-            <button onclick="startGame()">Iniciar Jogo</button>
+        
+        <!-- Botão de Pausa -->
+        <button class="pause-button" id="pauseBtn">⏸️ Pausar</button>
+        
+        <!-- Controles Mobile -->
+        <div class="mobile-controls">
+            <div class="control-row">
+                <button class="control-btn" data-direction="up">⬆️</button>
+            </div>
+            <div class="control-row">
+                <button class="control-btn" data-direction="left">⬅️</button>
+                <button class="control-btn" data-direction="down">⬇️</button>
+                <button class="control-btn" data-direction="right">➡️</button>
+            </div>
         </div>
-
-        <!-- Overlay de Game Over -->
-        <div id="gameOverOverlay" class="overlay">
-            <h1 style="color: var(--food-color)">Game Over</h1>
-            <p>Sua pontuação final: <span id="finalScore">0</span></p>
-            <button onclick="startGame()">Jogar Novamente</button>
-        </div>
-
-        <!-- OVERLAY DE PAUSA (ADICIONAR AQUI) -->
-        <div id="pauseOverlay" class="pause-overlay">
-        <h2>⏸️ Pausado</h2>
-        <p>Pressione ESPAÇO ou clique em Continuar</p>
-        <button onclick="togglePause()">▶️ Continuar</button>
-        </div>
-
+        
+        <!-- Dicas de Controle -->
         <div class="controls-hint">
-            Controles: <span class="key">↑</span> <span class="key">↓</span> <span class="key">←</span> <span class="key">→</span> 
+            Controles: <span class="key">↑</span><span class="key">↓</span><span class="key">←</span><span class="key">→</span> 
             ou <span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span>
+            | Pausa: <span class="key">ESPAÇO</span>
+        </div>
+        
+        <!-- Menu Principal -->
+        <div class="overlay" id="menuOverlay" style="display: block;">
+            <h1>🐍 Game Snake</h1>
+            <p>Use as setas para controlar</p>
+            
+            <!-- Seleção de Skins -->
+            <p>Escolha sua Skin:</p>
+            <div class="skin-selector">
+                <div class="skin-option skin-classic selected" data-skin="classic"></div>
+                <div class="skin-option skin-neon" data-skin="neon"></div>
+                <div class="skin-option skin-gold" data-skin="gold"></div>
+                <div class="skin-option skin-purple" data-skin="purple"></div>
+            </div>
+            
+            <button id="startBtn">Iniciar Jogo</button>
+        </div>
+        
+        <!-- Game Over -->
+        <div class="overlay" id="gameOverOverlay">
+            <h1>💀 Game Over</h1>
+            <p>Sua pontuação final: <span id="finalScore">0</span></p>
+            <button id="restartBtn">Jogar Novamente</button>
+        </div>
+        
+        <!-- Pause Overlay -->
+        <div class="overlay" id="pauseOverlay">
+            <h2>⏸️ Pausado</h2>
+            <p>Pressione ESPAÇO ou clique em Continuar</p>
+            <button id="continueBtn">▶️ Continuar</button>
         </div>
     </div>
-
-    <!-- Link para o arquivo de lógica (carregado no final para garantir que o HTML existe) -->
+    
     <script src="script.js"></script>
 </body>
 </html>
