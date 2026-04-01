@@ -7,9 +7,18 @@
     --food-color: #f87171;
     --text-color: #f1f5f9;
     --accent: #38bdf8;
+    /* Skins */
+    --skin-classic-snake: #4ade80;
+    --skin-classic-head: #22c55e;
+    --skin-neon-snake: #00ffff;
+    --skin-neon-head: #0080ff;
+    --skin-gold-snake: #fbbf24;
+    --skin-gold-head: #f59e0b;
+    --skin-purple-snake: #c084fc;
+    --skin-purple-head: #a855f7;
 }
 
-/* --- Reset Básico --- */
+/* --- Reset Básico (CORRIGIDO) --- */
 * {
     margin: 0;
     padding: 0;
@@ -25,13 +34,35 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
+    padding: 10px;
 }
 
 .container {
     position: relative;
     text-align: center;
+}
+
+/* --- Botão de Som --- */
+.sound-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--game-bg);
+    border: 1px solid #334155;
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+    z-index: 100;
+}
+
+.sound-toggle:hover {
+    background: var(--accent);
+    color: var(--bg-color);
 }
 
 /* --- Placar --- */
@@ -59,6 +90,7 @@ canvas {
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
     border: 2px solid #334155;
     display: block;
+    margin: 0 auto;
 }
 
 /* --- Overlays (Menu e Game Over) --- */
@@ -73,11 +105,11 @@ canvas {
     text-align: center;
     border: 1px solid var(--accent);
     box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
-    display: none; /* Escondido por padrão */
+    display: none;
     backdrop-filter: blur(5px);
-    /* Ajuste para garantir que fique centralizado sobre o canvas */
-    width: 90%; 
+    width: 90%;
     max-width: 400px;
+    z-index: 10;
 }
 
 .overlay h1 {
@@ -88,9 +120,59 @@ canvas {
     letter-spacing: 2px;
 }
 
+.overlay h2 {
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
 .overlay p {
     margin-bottom: 20px;
     color: #94a3b8;
+}
+
+/* --- Seleção de Skins --- */
+.skin-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.skin-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.skin-option:hover {
+    transform: scale(1.1);
+}
+
+.skin-option.selected {
+    border-color: var(--text-color);
+    box-shadow: 0 0 10px currentColor;
+}
+
+.skin-classic { 
+    background: linear-gradient(135deg, #4ade80, #22c55e); 
+}
+
+.skin-neon { 
+    background: linear-gradient(135deg, #00ffff, #0080ff); 
+}
+
+.skin-gold { 
+    background: linear-gradient(135deg, #fbbf24, #f59e0b); 
+}
+
+.skin-purple { 
+    background: linear-gradient(135deg, #c084fc, #a855f7); 
 }
 
 /* --- Botões --- */
@@ -141,7 +223,7 @@ button:hover {
     cursor: pointer;
     transition: all 0.2s;
     margin: 10px 0;
-    display: none; /* Escondido até o jogo começar */
+    display: none;
 }
 
 .pause-button:hover {
@@ -153,27 +235,81 @@ button:hover {
     background: #f59e0b;
 }
 
-/* Overlay de Pausa */
-.pause-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(15, 23, 42, 0.95);
-    padding: 40px;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid #6366f1;
-    box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+/* --- Controles Mobile --- */
+.mobile-controls {
     display: none;
-    backdrop-filter: blur(5px);
-    width: 90%;
-    max-width: 400px;
+    margin-top: 20px;
+    gap: 10px;
 }
 
-.pause-overlay h2 {
-    color: #6366f1;
-    margin-bottom: 10px;
-    font-size: 2rem;
-    text-transform: uppercase;
+.control-btn {
+    width: 60px;
+    height: 60px;
+    background: var(--game-bg);
+    border: 2px solid #334155;
+    border-radius: 12px;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.control-btn:active {
+    background: var(--accent);
+    color: var(--bg-color);
+    transform: scale(0.95);
+}
+
+.control-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* --- Responsividade para Celular --- */
+@media (max-width: 500px) {
+    canvas {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .scoreboard {
+        width: 320px;
+        font-size: 1rem;
+    }
+    
+    .mobile-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .controls-hint {
+        display: none;
+    }
+    
+    .overlay {
+        padding: 20px;
+        max-width: 90%;
+    }
+    
+    .overlay h1 {
+        font-size: 1.8rem;
+    }
+    
+    .overlay h2 {
+        font-size: 1.5rem;
+    }
+    
+    .sound-toggle {
+        top: 5px;
+        right: 5px;
+        padding: 6px 10px;
+        font-size: 1rem;
+    }
 }
