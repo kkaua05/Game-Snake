@@ -7,14 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Botão de Som -->
-    <button class="sound-toggle" id="soundToggle">🔊</button>
-    
     <div class="container">
+        <!-- Botão de Som -->
+        <button class="sound-toggle" id="soundToggle">🔊</button>
+        
         <!-- Placar -->
         <div class="scoreboard">
             <div class="score-box">Pontos: <span id="score">0</span></div>
             <div class="score-box">Recorde: <span id="highScore">0</span></div>
+        </div>
+        
+        <!-- Indicador de Power-up Ativo -->
+        <div class="powerup-indicator" id="powerupIndicator">
+            <span id="powerupText">⚡ Power-up Ativo!</span>
         </div>
         
         <!-- Canvas do Jogo -->
@@ -50,10 +55,34 @@
             <!-- Seleção de Skins -->
             <p>Escolha sua Skin:</p>
             <div class="skin-selector">
-                <div class="skin-option skin-classic selected" data-skin="classic"></div>
-                <div class="skin-option skin-neon" data-skin="neon"></div>
-                <div class="skin-option skin-gold" data-skin="gold"></div>
-                <div class="skin-option skin-purple" data-skin="purple"></div>
+                <div class="skin-option skin-classic selected" data-skin="classic" title="Clássico"></div>
+                <div class="skin-option skin-neon" data-skin="neon" title="Neon"></div>
+                <div class="skin-option skin-gold" data-skin="gold" title="Ouro"></div>
+                <div class="skin-option skin-purple" data-skin="purple" title="Roxo"></div>
+            </div>
+            
+            <!-- Info dos Power-ups -->
+            <div class="powerup-info">
+                <div class="powerup-item">
+                    <span class="powerup-icon">🍎</span>
+                    <span>Normal: +10 pts</span>
+                </div>
+                <div class="powerup-item">
+                    <span class="powerup-icon">⚡</span>
+                    <span>Relâmpago: +20 pts + Velocidade</span>
+                </div>
+                <div class="powerup-item">
+                    <span class="powerup-icon">🛡️</span>
+                    <span>Escudo: Protege 1 colisão</span>
+                </div>
+                <div class="powerup-item">
+                    <span class="powerup-icon">❄️</span>
+                    <span>Congelar: Inimigos param</span>
+                </div>
+                <div class="powerup-item">
+                    <span class="powerup-icon">🔮</span>
+                    <span>Fantasma: Atravessa paredes</span>
+                </div>
             </div>
             
             <button id="startBtn">Iniciar Jogo</button>
