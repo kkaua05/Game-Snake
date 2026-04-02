@@ -1,20 +1,34 @@
-/* --- Variáveis de Cores (Tema) --- */
+/* ============================================
+   GAME SNAKE - STYLE.CSS
+   Todas as funcionalidades integradas
+   ============================================ */
+
+/* --- Variáveis de Cores (Tema e Skins) --- */
 :root {
     --bg-color: #0f172a;
     --game-bg: #1e293b;
-    --snake-color: #4ade80;
-    --snake-head: #22c55e;
-    --food-color: #f87171;
     --text-color: #f1f5f9;
     --accent: #38bdf8;
+    
+    /* Cores Base */
+    --snake-body: #4ade80;
+    --snake-head: #22c55e;
+    --food-color: #f87171;
+    
+    /* Power-ups Colors */
+    --lightning-color: #fbbf24;
+    --shield-color: #38bdf8;
+    --freeze-color: #06b6d4;
+    --ghost-color: #c084fc;
+    
     /* Skins */
-    --skin-classic-snake: #4ade80;
+    --skin-classic-body: #4ade80;
     --skin-classic-head: #22c55e;
-    --skin-neon-snake: #00ffff;
+    --skin-neon-body: #00ffff;
     --skin-neon-head: #0080ff;
-    --skin-gold-snake: #fbbf24;
+    --skin-gold-body: #fbbf24;
     --skin-gold-head: #f59e0b;
-    --skin-purple-snake: #c084fc;
+    --skin-purple-body: #c084fc;
     --skin-purple-head: #a855f7;
 }
 
@@ -73,6 +87,7 @@ body {
     margin-bottom: 10px;
     font-size: 1.2rem;
     font-weight: bold;
+    gap: 10px;
 }
 
 .score-box {
@@ -83,14 +98,47 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
+/* --- Indicador de Power-up --- */
+.powerup-indicator {
+    display: none;
+    background: linear-gradient(135deg, #6366f1, #38bdf8);
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    animation: pulse 1s infinite;
+}
+
+.powerup-indicator.active {
+    display: inline-block;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+}
+
 /* --- Canvas do Jogo --- */
 canvas {
     background-color: var(--game-bg);
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
     border: 2px solid #334155;
     display: block;
     margin: 0 auto;
+    transition: box-shadow 0.3s;
+}
+
+canvas.powerup-active {
+    box-shadow: 0 0 50px rgba(251, 191, 36, 0.5);
+}
+
+canvas.shield-active {
+    box-shadow: 0 0 50px rgba(56, 189, 248, 0.5);
+}
+
+canvas.ghost-active {
+    box-shadow: 0 0 50px rgba(192, 132, 252, 0.5);
 }
 
 /* --- Overlays (Menu e Game Over) --- */
@@ -173,6 +221,29 @@ canvas {
 
 .skin-purple { 
     background: linear-gradient(135deg, #c084fc, #a855f7); 
+}
+
+/* --- Info dos Power-ups --- */
+.powerup-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+.powerup-item {
+    background: rgba(51, 65, 85, 0.5);
+    padding: 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.powerup-icon {
+    font-size: 1.2rem;
 }
 
 /* --- Botões --- */
@@ -281,6 +352,8 @@ button:hover {
     .scoreboard {
         width: 320px;
         font-size: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .mobile-controls {
@@ -304,6 +377,10 @@ button:hover {
     
     .overlay h2 {
         font-size: 1.5rem;
+    }
+    
+    .powerup-info {
+        grid-template-columns: 1fr;
     }
     
     .sound-toggle {
